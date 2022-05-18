@@ -13,11 +13,15 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    attribute: "src", 
-                    img: "https://us.123rf.com/450wm/olyamax/olyamax2006/olyamax200600018/149899027-perrito-divertido-asoma-la-nariz-a-la-c%C3%A1mara-lindo-perro-perdiguero-de-seis-semanas-de-edad-mirando-.jpg?ver=6"
+                    counter: 0
                 };
             },
-            template: `<img v-bind:[attribute] = "img">`
+            methods : {
+                increment(){
+                    this.counter++;
+                }
+            },
+            template: `<button v-on:click="increment">{{counter}}</button>`
         }).mount("#app");
     </script>
 </body>
