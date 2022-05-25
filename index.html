@@ -13,22 +13,27 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    firstName : "Claudia",
-                    lastName : "Di Pietro",
-                    now : new Date
+                    text: "La puerta está cerrada",
+                    doorOpen: false
                 };
             },
-            computed:{
-                fullName(){
-                    return this.firstName + " " + this.lastName
-                },
-                today(){
-                    return this.now.toLocaleDateString();
+            watch: {
+                doorOpen(value){
+                    if (value){
+                        this.text = "La puerta está abierta"
+                    } else {
+                        this.text = "La puerta está cerrada"
+                    }
+                }
+            },
+            computed: {
+                label(){
+                    return this.doorOpen ? "Cerrar" : "Abrir";
                 }
             },
             template: `
-            <div>{{fullName}}</div>
-            <div>{{today}}</div>
+            <div>{{text}}</div>
+            <button @click = "doorOpen = !doorOpen">{{label}}</button>
             `
         }).mount("#app");
     </script>
