@@ -20,22 +20,55 @@
             watch: {
                 doorOpen(value){
                     if (value){
-                        this.text = "La puerta está abierta"
+                        this.text = "La puerta está abierta";
                     } else {
-                        this.text = "La puerta está cerrada"
+                        this.text = "La puerta está cerrada";
                     }
                 }
             },
             computed: {
                 label(){
                     return this.doorOpen ? "Cerrar" : "Abrir";
+                },
+                styles(){
+                   return this.doorOpen ? ['open'] : ['close'];
                 }
             },
             template: `
-            <div>{{text}}</div>
-            <button @click = "doorOpen = !doorOpen">{{label}}</button>
+            <div class="container" :class="styles">
+                <h2>{{text}}</h2>
+                <button @click = "doorOpen = !doorOpen">{{label}}</button>
+                </div>
             `
         }).mount("#app");
     </script>
+    <style>
+        html, body{
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #app, .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+
+        }
+        button{
+            margin-top: 24px;
+            border: none;
+            background-color: white;
+            padding: 8px 24px;
+            border-radius: 12px;
+        }
+        .close{
+            background-color: #eca1a6;
+        }
+        .open{
+            background-color: #b5e7a0;
+        }
+    </style>
 </body>
 </html>
