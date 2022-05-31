@@ -15,7 +15,17 @@
                 return {
                     text: "Cierra sesión",
                     doorOpen: false,
-                    username: ""
+                    username: "",
+                    posts: [{
+                        title: "Titulo 1",
+                        description: "Lorem ipsum..."
+                    },{
+                        title: "Titulo 1",
+                        description: "Lorem ipsum..."
+                    },{
+                        title: "Titulo 1",
+                        description: "Lorem ipsum..."
+                    }]
                 };
             },
             watch: {
@@ -41,9 +51,15 @@
                 <h2>{{text}}</h2>
                 <div v-if="doorOpen">
                     <p> Hola, {{username}}</p>
+                    <div class="list">
+                        <div v-for="(item,i) in posts":key=""class="item">
+                            <div class="title">{{item.title}}</div>
+                            <p>{{item.description}}</p>
+                        </div>
+                    </div>
                 </div>
                 <div v-else>
-                    <label>Username</label>
+                    <div>Username</div>
                     <input type="text" v-model="username"/>
                 </div>
                 <button @click = "doorOpen = !doorOpen">
@@ -80,6 +96,17 @@
         }
         .open{
             background-color: #b5e7a0;
+        }
+        .list{
+            display: flex;
+            flex-direction: column;
+        }
+        .item{
+            border: 1px;
+        }
+        .title{
+            font-weight: bold;
+            font-size: 1.2rem;
         }
     </style>
 </body>
